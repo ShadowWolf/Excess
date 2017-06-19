@@ -47,13 +47,15 @@ namespace Excess.Compiler.Mock
         {
             //build a compiler
             var compiler = new RoslynCompiler();
-            builder(compiler);
+            builder?.Invoke(compiler);
 
             //then a document
-            var document = new RoslynDocument(compiler.Scope, code);
+            var document = new RoslynDocument(compiler.Scope, code)
+            {
+                Mapper = mapper
+            };
 
             //mapping
-            document.Mapper = mapper;
 
             //do the compilation
             compiler.apply(document);
