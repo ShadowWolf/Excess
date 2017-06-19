@@ -113,8 +113,7 @@ namespace Excess.Concurrent.Tests
             Assert.IsTrue(tree.GetRoot()
                 .DescendantNodes()
                 .OfType<ClassDeclarationSyntax>()
-                .Where(@class => @class.Identifier.ToString() == "__expr1")
-                .Single()
+                .Single(@class => @class.Identifier.ToString() == "__expr1")
                 .Members
                 .OfType<FieldDeclarationSyntax>()
                 .Count(field => new[] { "B", "E" }
